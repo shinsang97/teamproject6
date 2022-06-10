@@ -1,4 +1,4 @@
 package com.sparta.teamproject6.dto;
 
-public class ComentDto {
+public class PostRequestsDto {
 }
