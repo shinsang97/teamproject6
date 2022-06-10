@@ -33,16 +33,16 @@ public class User extends Timestamped {
     public User(UserRequestDto requestDto){
 
         this.userNumber = requestDto.getUserNumber();
-        this.nickname = requestDto.getUserName();
-        this.nickname = requestDto.getNickName();
+        this.nickname = requestDto.getUsername();
+        this.nickname = requestDto.getNickname();
         this.password = requestDto.getPassword();
     }
 
-    public update(UserRequestDto requestDto){
+    public void update(UserRequestDto requestDto){
 
         this.userNumber = requestDto.getUserNumber();
-        this.nickname = requestDto.getUserName();
-        this.nickname = requestDto.getNickName();
+        this.nickname = requestDto.getUsername();
+        this.nickname = requestDto.getNickname();
         this.password = requestDto.getPassword();
     }
 }
