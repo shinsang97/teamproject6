@@ -1,5 +1,6 @@
 package com.sparta.teamproject6.domain;
 
+import com.sparta.teamproject6.dto.PostRequestsDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class Post extends Timestamped { // 생성 , 수정 시간을 자동으�
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id //고유 아이디
-    private Long postId;
+    private Long id;
 
     @Column(nullable = false)
     private String username;
@@ -22,8 +23,17 @@ public class Post extends Timestamped { // 생성 , 수정 시간을 자동으�
     private String title;
 
     // 이미지
+    @Column
     private String image;
 
     // 작성글
+    @Column
     private String content;
+
+    public Post(PostRequestsDto requestsDto) {
+        this.username = requestsDto.getUsername();
+        this.title = requestsDto.getTitle();
+        this.content = requestsDto.getContent();
+        this.image = requestsDto.getImage();
+    }
 }
