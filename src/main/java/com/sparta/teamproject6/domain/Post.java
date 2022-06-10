@@ -1,5 +1,6 @@
 package com.sparta.teamproject6.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sparta.teamproject6.dto.PostRequestsDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,24 +17,36 @@ public class Post extends Timestamped { // 생성 , 수정 시간을 자동으�
     @Id //고유 아이디
     private Long id;
 
-    @Column(nullable = false)
-    private String username;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "userNumber")
+    private User user;
+
+
+
     // 제목
     @Column(nullable = false)
     private String title;
 
     // 이미지
     @Column
-    private String image;
+    private String imageurl;
 
     // 작성글
     @Column
     private String content;
 
-    public Post(PostRequestsDto requestsDto) {
-        this.username = requestsDto.getUsername();
+    public Post(PostRequestsDto requestsDto, User user) {
         this.title = requestsDto.getTitle();
         this.content = requestsDto.getContent();
-        this.image = requestsDto.getImage();
+        this.imageurl = requestsDto.getImageurl();
+        this.user = user;
+    }
+
+    public void update(PostRequestsDto requestsDto) {
+
+        this.title = requestsDto.getTitle();
+        this.content = requestsDto.getContent();
+        this.imageurl = requestsDto.getImageurl();
     }
 }
